@@ -2,6 +2,8 @@
 
 - create-react-app
 - Configured TailwindCSS
+- Login UI
+
 
 # Features
 - SignIn/SignUp Form
