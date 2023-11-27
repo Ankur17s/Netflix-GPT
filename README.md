@@ -2,7 +2,15 @@
 
 - create-react-app
 - Configured TailwindCSS
+- Routing Setup
 - Login UI
+- Login Form Validation
+- Firebase setup
+- Deploy our project to production
+- SignIn and SignUp API Integration
+- Setup Redux for Auth
+- Update User Profile
+- Implement SignOut
 
 
 # Features
