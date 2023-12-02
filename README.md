@@ -11,6 +11,7 @@
 - Setup Redux for Auth
 - Update User Profile
 - Implement SignOut
+- Protected Route
 
 
 # Features
