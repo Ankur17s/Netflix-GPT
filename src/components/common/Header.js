@@ -1,15 +1,28 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { auth } from "../../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser, removeUser } from "../../redux/userSlice";
+import { setGptSearch } from "../../redux/gptSlice";
+import { language } from "../../utils/constants";
+import { setLang } from "../../redux/configSlice";
 
 const Header = () => {
   const [showCard, setShowCard] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+  const showLang = useSelector((store) => store.gpt.toggleGptSearch);
+
+  const handleGptSearchView = () => {
+    dispatch(setGptSearch());
+  };
+
+  const handleLanguageChange = (e) => {
+    const { value } = e.target;
+    dispatch(setLang(value));
+  };
 
   const userSignOut = () => {
     signOut(auth)
@@ -34,7 +47,7 @@ const Header = () => {
     });
   }, []);
   return (
-    <div className="flex items-center justify-between bg bg-gradient-to-b from-gray-950 p-2 absolute z-10 w-full">
+    <div className="flex items-center justify-between bg-gradient-to-b from-gray-950 p-2 absolute z-10 w-full">
       <div className="flex items-center">
         <img
           src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
@@ -54,8 +67,22 @@ const Header = () => {
       </div>
       {user && (
         <div className="flex text-white gap-3 pr-6">
+          {showLang && (
+            <select
+              className="bg-gray-800 text-white px-2 py-2 rounded-lg cursor-pointer outline-none"
+              onChange={handleLanguageChange}
+            >
+              {language.map((language) => (
+                <option value={language.id} key={language.id}>
+                  {language.name}
+                </option>
+              ))}
+            </select>
+          )}
           <div className="w-8">
-            <span>🔍</span>
+            <span className="cursor-pointer" onClick={handleGptSearchView}>
+              {showLang ? "🏠" : "🔍"}
+            </span>
           </div>
           <span>Children</span>
           <span>🔔</span>

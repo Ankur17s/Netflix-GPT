@@ -12,6 +12,11 @@
 - Update User Profile
 - Implement SignOut
 - Protected Route
+- Add different Movies categories (with custom hooks)
+- GPT Search Page
+- GPT Search Bar
+- MultiLang Feature
+
 
 
 # Features

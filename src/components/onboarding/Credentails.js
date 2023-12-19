@@ -6,14 +6,12 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../redux/userSlice";
 
 const Credentails = () => {
   const [isSignInForm, setIsSingInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const fullName = useRef(null);
@@ -29,7 +27,7 @@ const Credentails = () => {
     setErrorMessage(message);
     // return if there is any error message
     if (message) return;
-
+                                   
     // SignIn and SignUp Logic
     if (!isSignInForm) {
       // SignUp Logic
